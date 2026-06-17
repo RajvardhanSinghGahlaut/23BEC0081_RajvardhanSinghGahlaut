@@ -1,0 +1,83 @@
+17th June TEST
+Rajvardhan Gahlaut
+23BEC0081
+
+db.employees.insertOne({
+    empId: 106,
+    name: "Raj",
+    age: 21,
+    department: "Electronics",
+    salary: 70000,
+    city: "Surat",
+    experience: 4,
+    skills: ["Java","MongoDB"],
+    active: true
+});
+
+db.employees.insertMany([
+{
+    empId: 107,
+    name: "Rohani",
+    age: 23,
+    department: "HR",
+    salary: 40000,
+    city: "Lucknow",
+    experience: 2,
+    skills: ["Content Writing","Negotiation"],
+    active: true
+},
+{
+    empId: 108,
+    name: "Rohan",
+    age: 25,
+    department: "IT",
+    salary: 80000,
+    city: "Allahbad",
+    experience: 7,
+    skills: ["Java","Docker"],
+    active: true
+},
+{
+    empId: 109,
+    name: "Rajeshwari",
+    age: 29,
+    department: "Marketing",
+    salary: 52000,
+    city: "Hyderabad",
+    experience: 6,
+    skills: ["Payroll","Onboarding"],
+    active: false
+}
+]);
+
+3. db.employees.findOne({ department: "IT" });
+4. db.employees.find().pretty();
+5. db.employees.find({}, { name: 1, salary: 1, _id: 0 });
+6. db.employees.find({ salary: { $eq: 50000 } });
+7. db.employees.find({ salary: { $lt: 60000 } });
+8. db.employees.find({ salary: { $gte: 60000 } });
+9. db.employees.find({ age: { $ne: 30 } });
+10. db.employees.find({ city: { $in: ["Chennai", "Mumbai"] } });
+11. db.employees.find({ city: { $nin: ["Chennai"] } });
+12. db.employees.find({ $and: [{ department: "IT" }, { salary: { $gt: 50000 } }] });
+13. db.employees.find({ $or: [{ city: "Chennai" }, { city: "Bangalore" }] });
+14.  db.employees.find({ salary: { $not: { $gt: 60000 } } });
+15. db.employees.find({ department: { $nin: ["IT", "HR"] } });
+16. db.employees.find({ experience: { $exists: true } });
+17. db.employees.find({ salary: { $type: "int" } });
+18. db.employees.find({ skills: "MongoDB" });
+19. db.employees.find({ skills: { $all: ["MongoDB", "AWS"] } });
+20.  db.employees.find({ skills: { $size: 3 } });
+21. db.employees.find({ skills: { $elemMatch: { $eq: "Java" } } });
+22.  db.employees.find().sort({ salary: -1 });
+23. db.employees.find().sort({ salary: -1 }).limit(3);
+24.
+db.employees.updateOne(
+    { empId: 101 },
+    { $inc: { salary: 5000 } }
+);
+25.
+db.employees.updateMany(
+    { department: "IT" },
+    [ { $set: { salary: { $multiply: ["$salary", 1.10] } } } ]
+);
